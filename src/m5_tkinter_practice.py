@@ -9,8 +9,27 @@ Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
 import tkinter
 from tkinter import ttk
 
-def Print_Hello():
+
+def print_hello():
     print('Hello')
+
+
+def print_goodbye():
+    print('Goodbye')
+
+
+def print_button2(entry_box):
+    if (entry_box.get()=="ok"):
+        print_hello()
+    else:
+        print_goodbye()
+
+
+def print_button3(entry_box1, entry_box2):
+    s = entry_box2.get()                    # entry_box1 contains what is being printed n times
+    n = int(s)                              # entry_box2 contains the integer n
+    for _ in range(n):
+        print(entry_box1.get())
 
 
 def main():
@@ -19,47 +38,44 @@ def main():
     # Done: 2. After reading and understanding the m1e module,
     #   ** make a window that shows up. **
     # -------------------------------------------------------------------------
-    window = tkinter.Tk()
+    root = tkinter.Tk()
     # -------------------------------------------------------------------------
     # Done: 3. After reading and understanding the m2e module,
     #   ** put a Frame on the window. **
     # -------------------------------------------------------------------------
-    frame1 = ttk.Frame(window,padding=30, relief = 'groove')
-    frame2 = ttk.Frame(window, padding=10, relief='raised')
+    frame1 = ttk.Frame(root,padding=30, relief = 'groove')
     frame1.grid()
-    frame2.grid()
     # -------------------------------------------------------------------------
     # Done: 4. After reading and understanding the m2e module,
     #   ** put a Button on the Frame. **
     # -------------------------------------------------------------------------
-    button1 = ttk.Button(frame1, text='Hello')
-    button2 = ttk.Button(frame2, text='Goodbye')
+    button1 = ttk.Button(frame1, text='Button 1')
     button1.grid()
-    button2.grid()
     # -------------------------------------------------------------------------
     # Done: 5. After reading and understanding the m3e module,
     #   ** make your Button respond to a button-press **
     #   ** by printing   "Hello"  on the Console.     **
     # -------------------------------------------------------------------------
     button1['command'] = lambda: print_hello()
-    window.mainloop()
-
-
-def print_hello():
-    print('Hello')
-
 
     # -------------------------------------------------------------------------
-    # TODO: 6. After reading and understanding the m4e module,
+    # Done: 6. After reading and understanding the m4e module,
     #   -- Put an Entry box on the Frame.
     #   -- Put a second Button on the Frame.
     #   -- Make this new Button, when pressed, print "Hello"
     #        on the Console if the current string in the Entry box
     #        is the string 'ok', but print "Goodbye" otherwise.
     # -------------------------------------------------------------------------
+    my_entry_box = ttk.Entry(frame1)
+    my_entry_box.grid()
+    button2 = ttk.Button(frame1, text='Button 2')
+    button2.grid()
+    button2['command'] = lambda: print_button2(my_entry_box)
+
+
 
     # -------------------------------------------------------------------------
-    # TODO: 7.
+    # Done: 7.
     #    -- Put a second Entry on the Frame.
     #    -- Put a third Button on the frame.
     #    -- Make this new Button respond to a button-press as follows:
@@ -81,9 +97,15 @@ def print_hello():
     #      s = entry_box.get()
     #      n = int(s)
     ####################################################################
+    button3 = ttk.Button(frame1, text='Button 3')
+    button3.grid()
+    my_entry_box_2 = ttk.Entry(frame1)
+    my_entry_box_2.grid()
+    button3['command'] = lambda: print_button3(my_entry_box, my_entry_box_2)
+    root.mainloop()
 
     # -------------------------------------------------------------------------
-    # TODO: 8. As time permits, do other interesting GUI things!
+    # Done: 8. As time permits, do other interesting GUI things!
     # -------------------------------------------------------------------------
 
 
